@@ -19,6 +19,7 @@ window.RichTextVideoPlayer = {
     const tokens = document.querySelectorAll("[data-video-token]");
     if (!tokens.length) return;
 
+    // matches your actual template element
     const reference = document.querySelector("[data-video-template]");
     if (!reference) return;
 
@@ -29,10 +30,12 @@ window.RichTextVideoPlayer = {
       const src = token.dataset.videoSrc;
       const poster = token.dataset.videoPoster;
 
+      // clone full block
       const player = reference.cloneNode(true);
 
-      const video = player.querySelector("[data-video]");
-      const source = player.querySelector("[data-video-source]");
+      // THIS matches your DOM:
+      const video = player.querySelector("[data-video-el]");
+      const source = player.querySelector("source");
 
       if (video) video.setAttribute("poster", poster);
       if (source) source.setAttribute("src", src);
